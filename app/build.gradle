@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "fo0nt.korjournal"
+        versionCode 1
+        versionName "1.0.0"
+
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation  "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    implementation  "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation  "com.jakewharton.timber:timber:$rootProject.timberVersion"
+    implementation  "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    implementation  "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    implementation  "com.google.dagger:dagger:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    implementation  "com.google.dagger:dagger-android:$rootProject.daggerVersion"
+    implementation  "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
+}
+
